@@ -1,0 +1,13 @@
+.main-menu {
+top: 86px !important;
+}
+
+
+.main-menu ul {
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.main-menu li {
+    font-size: 14px;
+}
