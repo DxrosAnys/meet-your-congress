@@ -1,24 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import './scss/style.scss';
+import { AppContent, AppSidebar, AppHeader } from './components/index';
+import "@coreui/coreui/dist/css/coreui.min.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <AppSidebar />
+        <div className="wrapper d-flex flex-column min-vh-100 bg-light">
+          <AppHeader />
+          <div className="body flex-grow-1 px-3">
+            <AppContent />
+          </div>
+          //footer
+        </div>
+      </div>
   );
 }
 

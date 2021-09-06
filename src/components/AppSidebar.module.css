@@ -1,0 +1,15 @@
+.main-sidebar div {
+    align-items: stretch;
+}
+
+.main-sidebar img {
+    margin: 5px;
+}
+
+.main-sidebar h4 {
+    margin-left: 1px;
+}
+
+.main-sidebar b {
+    color: #B83636;
+}
