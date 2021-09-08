@@ -1,6 +1,21 @@
 .main-content {
     background-color: #7d7c84;
-    position: absolute;
+    position: relative;
     display: flex;
     box-sizing:border-box;
+}
+
+.cat_circle {
+    border: 3px solid #7E9CC2;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cat_circle img {
+    width: 80%;
+    height: auto;
 }

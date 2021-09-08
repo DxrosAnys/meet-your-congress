@@ -1,13 +1,12 @@
-import React, {Fragment, useState} from "react";
+import React, {useState} from "react";
 import classes from "./AppHeader.module.css";
-import congress from "../assets/icons/congreso.png";
 import CIcon from '@coreui/icons-react';
 import {
     CContainer, CHeader, CHeaderBrand, CHeaderNav, CHeaderToggler,
     CNavItem,
     CNavLink,
 } from "@coreui/react";
-import {useDispatch, useSelector} from "react-redux";
+// import {useDispatch, useSelector} from "react-redux";
 
 
 const AppHeader = () => {
