@@ -7,80 +7,63 @@ import {
 } from "@coreui/react";
 import classes from "./AppContent.module.css";
 
+/**
+ * Shape formation of congress by #Diego
+ * V0.0.1
+ * @return MainPage - First page of this project.
+ * **/
 const AppContent = () => {
     const classesHeader = `sidebar-fixed context ${classes["main-content"]}`;
 
     let rowMax = 16;
     let colMax = 15;
-    let counterIncrease = 1;
     let row = 0;
-    let j = 0;
+    let col = 0;
     let spaceCounter = 6;
-    let startCounter = 2;
     let paternCounter = 1;
-    let counterCongressMan = 1;
-    let debit = 0;
+    let  use = 1;
 
     let middleCounter = 0;
     let iterationCounter = 0;
 
-    const emptyCol = <CCol/>;
+
     let middle = ((colMax - 1) / 2);
-    let exceptionCounter = middle;
-    const listCol = (row, value) => {
+
+    const emptyCol = <CCol/>;
+    const listCol = (row) => {
         let congressRow = [];
-        console.log(value % 2 + " result:" + value);
 
-        // if (value < 7) {
-        //     if (value % 2 === 0) {
-        //         counter = counter + 1;
-        //
-        //         if (counter === 2 && value < 7) {
-        //             validateIncrease = 2;
-        //             counter = 0;
-        //         } else if (value === 6) {
-        //             console.log("logs" + value);
-        //             validateIncrease = 3;
-        //             counter = 0;
-        //         } else {
-        //             validateIncrease = 1;
-        //         }
-        //
-        //     }
-        //
-        // } else {
-        //     if (value === 7) {
-        //         validateIncrease = 0;
-        //     } else {
-        //         validateIncrease = 1;
-        //     }
-        // }
-
-        if (row === startCounter) {
-            console.log("xxx" + paternCounter);
-            startCounter = startCounter + 2;
+        if (row % 2 === 0 && row > 0) {
             paternCounter = paternCounter + 2;
             spaceCounter = spaceCounter - 1;
             iterationCounter = iterationCounter + 1;
-
+            if (paternCounter === middle + 4 ) {
+                spaceCounter = spaceCounter -1;
+            }
         }
 
         if (row % iterationCounter === 0) {
-            if (paternCounter > middle) {
+            if (paternCounter > middle ) {
+                if (paternCounter !== middle + 2) {
+                    middleCounter = middleCounter + 1 + use;
 
-                middleCounter = middleCounter + 1;
+                    if(use !== 0)
+                        use = use - 1;
+                }
+
+
             }
         }
 
-        for (j = 0; j < colMax; j++) {
+        for (col = 0; col < colMax; col++) {
             console.log("spaceCounter " + spaceCounter);
-            if (j < spaceCounter || j >= colMax - spaceCounter) {
+            if (col < spaceCounter || col >= colMax - spaceCounter) {
                 congressRow.push(emptyCol);
             }
 
-            if (j >= spaceCounter && j < colMax - spaceCounter) {
+            if (col >= spaceCounter && col < colMax - spaceCounter) {
 
-                if (middle > j - middleCounter && middle < j + middleCounter) {
+                if (middle > col - middleCounter && middle < col + middleCounter) {
                     congressRow.push(emptyCol);
                 } else {
                     const values =
@@ -93,64 +76,7 @@ const AppContent = () => {
                 }
             }
 
-
-            // for (j = 0; j < counterVisible - validateIncrease; j++) {
-            //     congressRow.push(emptyCol);
-            // }
-            //
-            // for (j = 0; j < counterVisible + (2 * validateIncrease); j++) {
-            //     const values =
-            //         <CCol>
-            //     <span className={classes.cat_circle}>
-            //         <img src="/avatars/8.jpg"/>
-            //     </span>
-            //         </CCol>;
-            //     congressRow.push(values);
-            // }
-            //
-            // for (j = 0; j < counterVisible - validateIncrease; j++) {
-            //     congressRow.push(emptyCol);
-            // }
         }
-        /*      if (value >= 7) {
-                  cooo =  cooo +1;
-                  cooo02 = cooo02 +1;
-
-                  if (cooo02 === 3) {
-
-                      counterVoid = counterVoid - 1;
-                      counter2 = (counterVoid +1);
-                      cooo02 = 0;
-                  }
-
-                  if (cooo === 3) {
-                      counterVoidMiddle = counterVoidMiddle + 1;
-                      cooo = 0 ;
-                  }
-
-                  for (j = 0; j < colMax; j++) {
-
-                      if (j <=  counterVoid || j >= 15 - counter2) {
-                          congressRow.push(emptyCol);
-                      }
-
-                      if (j > counterVoid && j < 15 - counter2) {
-
-                          if (middle  >= j - counterVoidMiddle  && middle  <= j + counterVoidMiddle ) {
-                              congressRow.push(emptyCol);
-                          } else {
-                              const values =
-                                  <CCol>
-                                      <span className={classes.cat_circle}>
-                                          <img src="/avatars/8.jpg" className="rounded-circle" alt=""/>
-                                      </span>
-                                  </CCol>;
-                              congressRow.push(values);
-                          }
-                      }
-                  }
-
-              } */
 
         return congressRow;
 
@@ -162,10 +88,9 @@ const AppContent = () => {
 
             congress =
                 (<CRow id={row} lg={{cols: 15, gutter: 15}}>
-                    {listCol(row, counterIncrease)}
+                    {listCol(row)}
                 </CRow>);
 
-            counterIncrease++;
             adds.push(congress);
         }
         return adds;
