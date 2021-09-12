@@ -1,10 +1,10 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment} from "react";
 import {
-    CAvatar,
     CCol,
     CContainer,
     CRow
 } from "@coreui/react";
+import '../scss/_custom.scss';
 import classes from "./AppContent.module.css";
 
 /**
@@ -12,8 +12,11 @@ import classes from "./AppContent.module.css";
  * V0.0.1
  * @return MainPage - First page of this project.
  * **/
-const AppContent = () => {
+const AppContent = (props) => {
     const classesHeader = `sidebar-fixed context ${classes["main-content"]}`;
+
+   const congressMen =  props.congressList;
+
 
     let rowMax = 16;
     let colMax = 15;
@@ -26,11 +29,12 @@ const AppContent = () => {
     let middleCounter = 0;
     let iterationCounter = 0;
 
-
+    let countCongress = 0;
     let middle = ((colMax - 1) / 2);
 
     const emptyCol = <CCol/>;
     const listCol = (row) => {
+
         let congressRow = [];
 
         if (row % 2 === 0 && row > 0) {
@@ -56,7 +60,6 @@ const AppContent = () => {
         }
 
         for (col = 0; col < colMax; col++) {
-            console.log("spaceCounter " + spaceCounter);
             if (col < spaceCounter || col >= colMax - spaceCounter) {
                 congressRow.push(emptyCol);
             }
@@ -66,12 +69,18 @@ const AppContent = () => {
                 if (middle > col - middleCounter && middle < col + middleCounter) {
                     congressRow.push(emptyCol);
                 } else {
-                    const values =
+                    const man = congressMen[countCongress];
+                    console.log(man);
+                    document.querySelectorAll('.cat_circle')
+                    const values = (
                         <CCol>
                                 <span className={classes.cat_circle}>
-                                    <img src="/avatars/8.jpg" className="rounded-circle" alt=""/>
+                                    <img id={man !== undefined ? man.id : null}
+                                         src={man !== undefined ? man.image : '/avatars/1.jpg' }
+                                         className={`bg-color-red rounded-circle` } alt=""/>
                                 </span>
-                        </CCol>;
+                        </CCol>);
+                    countCongress = countCongress + 1;
                     congressRow.push(values);
                 }
             }
@@ -81,11 +90,12 @@ const AppContent = () => {
         return congressRow;
 
     };
-    const rows = () => {
-        const adds = [];
-        let congress = "";
-        for (row = 0; row < rowMax; row++) {
 
+    const adds = [];
+    let congress = "";
+
+    const rows = () => {
+        for (row = 0; row < rowMax; row++) {
             congress =
                 (<CRow id={row} lg={{cols: 15, gutter: 15}}>
                     {listCol(row)}
@@ -97,14 +107,9 @@ const AppContent = () => {
 
     };
 
-    // const xxx = <CAvatar className={classes.cat_circle} src="/avatars/8.jpg" size="lg" />;
-
-
-    const congressCol = (<CCol><span className={classes.cat_circle}><img src="/avatars/8.jpg" alt=""/></span></CCol>);
-
     return (
         <Fragment>
-            <div className={classesHeader} lg xl xxl>
+            <div className={classesHeader} >
                 <CContainer fluid='true'>
                     <CRow lg={{cols: 1, gutter: 1}}>
                         <h1 className='text-lg-center'>Congreso de la República</h1>

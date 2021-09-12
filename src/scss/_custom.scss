@@ -1,1 +1,8 @@
 // Here you can add other styles
+$colors: red, orange, yellow, green, blue, purple, black, white;
+
+@each $color in $colors {
+  .bg-color-#{$color} {
+    border-color: $color !important;
+  }
+}
