@@ -14,11 +14,13 @@ import classes from "./AppContent.module.css";
 const AppContent = (props) => {
     const classesHeader = `sidebar-fixed context ${classes["main-content"]}`;
 
-   const congressMen =  props.congressList;
+    const congressMen = props.congressList;
 
-   const onClickInfoCongressman = (event) => {
-       console.log(event);
-   };
+    const onMouseEnterInfoMan = (event) => {
+        if (!event.target.id.match("^[a-zA-Z]*$") && !event.target.id.match("^[0-9]*$")) {
+            console.log(event.target.id);
+        }
+    };
 
     let rowMax = 16;
     let colMax = 15;
@@ -26,7 +28,7 @@ const AppContent = (props) => {
     let col = 0;
     let spaceCounter = 6;
     let patternCounter = 1;
-    let  use = 1;
+    let use = 1;
 
     let middleCounter = 0;
     let iterationCounter = 0;
@@ -36,7 +38,7 @@ const AppContent = (props) => {
     let middle = ((colMax - 1) / 2);
 
     const emptyCol = (id) => {
-        return <CCol key={id} />;
+        return <CCol key={id}/>;
     };
     const listCol = (row) => {
 
@@ -46,17 +48,17 @@ const AppContent = (props) => {
             patternCounter = patternCounter + 2;
             spaceCounter = spaceCounter - 1;
             iterationCounter = iterationCounter + 1;
-            if (patternCounter === middle + 4 ) {
-                spaceCounter = spaceCounter -1;
+            if (patternCounter === middle + 4) {
+                spaceCounter = spaceCounter - 1;
             }
         }
 
         if (row % iterationCounter === 0) {
-            if (patternCounter > middle ) {
+            if (patternCounter > middle) {
                 if (patternCounter !== middle + 2) {
                     middleCounter = middleCounter + 1 + use;
 
-                    if(use !== 0)
+                    if (use !== 0)
                         use = use - 1;
                 }
 
@@ -66,24 +68,25 @@ const AppContent = (props) => {
 
         for (col = 0; col < colMax; col++) {
             if (col < spaceCounter || col >= colMax - spaceCounter) {
-                congressRow.push(emptyCol('y'+countFullSpace));
+                congressRow.push(emptyCol(countFullSpace));
             }
 
             if (col >= spaceCounter && col < colMax - spaceCounter) {
                 if (middle > col - middleCounter && middle < col + middleCounter) {
-                    congressRow.push(emptyCol('x'+countFullSpace));
+                    congressRow.push(emptyCol(countFullSpace));
                 } else {
-                    const man = congressMen[countCongress];
+                    const getMan = congressMen[countCongress];
 
-                    document.querySelectorAll('.cat_circle')
+                    const getIdMan = getMan !== undefined ? getMan.id : countCongress;
+                    const getColorMan = getMan !== undefined ? getMan.color : 'gray';
+                    const getImageMan = getMan !== undefined ? getMan.image : '/avatars/1.jpg';
+
                     const values = (
-                        <CCol key={`${countCongress}${man !== undefined ? man.id : countCongress}`} >
-                            <span  key={man !== undefined ? man.id : ''}
-                                   className={` bg-color-${man !== undefined ? man.color : ''} ${classes.cat_circle}`}
-                                   onMouseEnter={onClickInfoCongressman}>
-                                <img key={man !== undefined ? man.id : countCongress}
-                                     src={man !== undefined ? man.image : '/avatars/1.jpg' }
-                                     className={`rounded-circle` } alt=""/>
+                        <CCol key={getIdMan}>
+                            <span id={getIdMan} key={getIdMan}
+                                  className={`${'bg-color-' + getColorMan} ${classes.cat_circle}`}
+                                  onMouseEnter={onMouseEnterInfoMan}>
+                                <img src={getImageMan} className={`rounded-circle`} alt=""/>
                             </span>
                         </CCol>);
                     countCongress = countCongress + 1;
@@ -115,7 +118,7 @@ const AppContent = (props) => {
 // fluid='true'
     return (
         <Fragment>
-            <div className={classesHeader} >
+            <div className={classesHeader}>
                 <CContainer>
                     <CRow lg={{cols: 1, gutter: 1}}>
                         <h1 className='text-lg-center'>Congreso de la República</h1>
