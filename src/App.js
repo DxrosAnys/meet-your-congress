@@ -1,6 +1,5 @@
 import './App.css';
 import './scss/style.scss';
-import './scss/_custom.scss';
 import {Suspense} from "react";
 import "@coreui/coreui/dist/css/coreui.min.css";
 import {HashRouter, Route, Switch} from "react-router-dom";

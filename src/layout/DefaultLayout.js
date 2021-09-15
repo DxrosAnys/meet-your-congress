@@ -1,4 +1,6 @@
 import {AppContent, AppHeader, AppSidebar} from "../components";
+import {useState} from "react";
+import AppFooter from "../components/AppFooter";
 
 const DUMMY_CONGRESSMAN = [
     {
@@ -45,6 +47,12 @@ const DUMMY_CONGRESSMAN = [
 
 
 const DefaultLayout = () => {
+    const [isSelectingParty, setSelectedParty] = useState(false);
+
+    const showPartyInformation = () => {
+
+    }
+
     return (
         <div>
             <AppSidebar/>
@@ -53,7 +61,7 @@ const DefaultLayout = () => {
                 <div className="body flex-grow-1 px-3">
                     <AppContent congressList={DUMMY_CONGRESSMAN}/>
                 </div>
-                //footer
+                <AppFooter/>
             </div>
         </div>
     );

@@ -6,10 +6,11 @@ import {
     CNavItem,
     CNavLink,
 } from "@coreui/react";
-// import {useDispatch, useSelector} from "react-redux";
+ import {useDispatch, useSelector} from "react-redux";
 
 
 const AppHeader = () => {
+    const dispatch = useDispatch();
     const classesHeader = `bg-light ${classes.header}`;
     const [visible, setVisible] = useState(false);
 

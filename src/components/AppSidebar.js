@@ -67,23 +67,24 @@ const DUMMY_PARTIES = [
 ];
 
 const AppSidebar = () => {
+    const dispatch = useDispatch();
     const [visible, setVisible] = useState(true);
     const classesHeader = `sidebar-fixed ${classes["main-menu"]}`;
- //   const dispatch = useDispatch();
+
     const unfoldable = true ; // useSelector((state) => state.sidebarUnfoldable);
     const sidebarShow =  true; //useSelector((state) => state.sidebarShow);
 
     const parties = DUMMY_PARTIES.map(party => {
         return (
-            <CNavGroup toggler={party.party_name}>
-                <CNavItem id={party.id}>
+            <CNavGroup key={party.id} toggler={party.party_name}>
+                <CNavItem key={party.id} id={party.id}>
                     <label>Presidente: {party.party_president}</label>
-                    <label> Fundación: {party.foundation}</label>
-                    <label> Sede: {party.campus}</label>
+                    <label>Fundación: {party.foundation}</label>
+                    <label>Sede: {party.campus}</label>
                     <label>Congresistas: {party.number_congressman}</label>
-                    <label> Parlamento Andino: {party.number_andean_parliament}</label>
+                    <label>Parlamento Andino: {party.number_andean_parliament}</label>
                     <label>Gobernadores Regionales: {party.number_regional_governors}</label>
-                    <label> Alcaldías provinciales: {party.number_provincial_mayors}</label>
+                    <label>Alcaldías provinciales: {party.number_provincial_mayors}</label>
                     <label>Alcaldías distritales: {party.number_district_mayors}</label>
                 </CNavItem>
             </CNavGroup>
@@ -92,7 +93,7 @@ const AppSidebar = () => {
     return (
             <CSidebar visible={true} position="fixed"
                       selfHiding="md"
-                      show={true}
+                   //   show={true}
                       onShow={() => console.log('show')}
                       className={classes["main-sidebar"]}
                       >

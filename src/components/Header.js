@@ -31,7 +31,7 @@ const Header = () => {
             <b>Conoce</b> a tu <b>Congresista</b>
           </CNavbarBrand>
           <CCollapse className="navbar-collapse left" visible={visible}>
-            <CNavbarNav className="d-md-down-none mr-auto c-header-nav"></CNavbarNav>
+            <CNavbarNav className="d-md-down-none mr-auto c-header-nav"/>
             <CNavbarNav className="px-3 c-header-nav">
               <CNavItem>
                 <CNavLink href="#">Agenda Documentada</CNavLink>
