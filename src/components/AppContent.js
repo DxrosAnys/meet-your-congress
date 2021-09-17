@@ -1,7 +1,8 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState} from "react";
 import {
+    CButton,
     CCol,
-    CContainer,
+    CContainer, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle,
     CRow
 } from "@coreui/react";
 import classes from "./AppContent.module.css";
@@ -13,13 +14,40 @@ import classes from "./AppContent.module.css";
  * **/
 const AppContent = (props) => {
     const classesHeader = `sidebar-fixed context ${classes["main-content"]}`;
+    const [visible, setVisible] = useState(false);
+
+    const LiveDemo = () => {
+        return (
+            <>
+                <CButton onClick={() => setVisible(!visible)}>Launch demo modal</CButton>
+                <CModal visible={visible} onDismiss={() => setVisible(false)}>
+                    <CModalHeader onDismiss={() => setVisible(false)}>
+                        <CModalTitle>Modal title</CModalTitle>
+                    </CModalHeader>
+                    <CModalBody>Woohoo, you&#39;re reading this text in a modal!</CModalBody>
+                    <CModalFooter>
+                        <CButton color="secondary" onClick={() => setVisible(false)}>
+                            Close
+                        </CButton>
+                        <CButton color="primary">Save changes</CButton>
+                    </CModalFooter>
+                </CModal>
+            </>
+        )
+    }
 
     const congressMen = props.congressList;
 
-    const onMouseEnterInfoMan = (event) => {
+    const onMouseEnterInfoMan = (event, getIdParty) => {
         if (!event.target.id.match("^[a-zA-Z]*$") && !event.target.id.match("^[0-9]*$")) {
-            console.log(event.target.id);
+
+            props.showInfoParty(event.target.id, getIdParty);
+
         }
+    };
+
+    const onClickInfoMan = (getIdMan) => {
+        setVisible(true);
     };
 
     let rowMax = 16;
@@ -77,18 +105,23 @@ const AppContent = (props) => {
                 } else {
                     const getMan = congressMen[countCongress];
 
+                    const getIdParty = getMan !== undefined ? getMan.idParty : null;
                     const getIdMan = getMan !== undefined ? getMan.id : countCongress;
                     const getColorMan = getMan !== undefined ? getMan.color : 'gray';
                     const getImageMan = getMan !== undefined ? getMan.image : '/avatars/1.jpg';
 
                     const values = (
-                        <CCol key={getIdMan}>
-                            <span id={getIdMan} key={getIdMan}
+                        <Fragment>
+                            <CCol key={getIdMan}>
+                                <div>{LiveDemo}</div>
+                                <span id={getIdMan} key={getIdMan}
                                   className={`${'bg-color-' + getColorMan} ${classes.cat_circle}`}
-                                  onMouseEnter={onMouseEnterInfoMan}>
+                                  onMouseEnter={event => {onMouseEnterInfoMan(event, getIdParty)}}
+                                  onClick={() => onClickInfoMan(getIdMan)}>
                                 <img src={getImageMan} className={`rounded-circle`} alt=""/>
                             </span>
-                        </CCol>);
+                            </CCol>
+                        </Fragment>);
                     countCongress = countCongress + 1;
                     congressRow.push(values);
                 }
