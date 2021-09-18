@@ -6,6 +6,7 @@ import {
     CRow
 } from "@coreui/react";
 import classes from "./AppContent.module.css";
+import MemberCard from "./base/MemberCard";
 
 /**
  * Shape formation of congress by #Diego
@@ -97,12 +98,9 @@ const AppContent = (props) => {
                     const values = (
                         <Fragment>
                             <CCol key={getIdMan}>
-                                <span id={getIdMan} key={getIdMan}
-                                  className={`${'bg-color-' + getColorMan} ${classes.cat_circle}`}
-                                  onMouseEnter={event => {onMouseEnterInfoMan(event, getIdParty)}}
-                                  onClick={() => onClickInfoMan(getIdMan)}>
-                                <img src={getImageMan} className={`rounded-circle`} alt=""/>
-                            </span>
+                                    <MemberCard id={getIdMan}  key={getIdMan} idParty={getIdParty}
+                                                colorParty={getColorMan} srcImage={getImageMan}
+                                    onChooseMember={onMouseEnterInfoMan}/>
                             </CCol>
                         </Fragment>);
                     countCongress = countCongress + 1;
