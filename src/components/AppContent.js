@@ -17,23 +17,7 @@ const AppContent = (props) => {
     const [visible, setVisible] = useState(false);
 
     const LiveDemo = () => {
-        return (
-            <>
-                <CButton onClick={() => setVisible(!visible)}>Launch demo modal</CButton>
-                <CModal visible={visible} onDismiss={() => setVisible(false)}>
-                    <CModalHeader onDismiss={() => setVisible(false)}>
-                        <CModalTitle>Modal title</CModalTitle>
-                    </CModalHeader>
-                    <CModalBody>Woohoo, you&#39;re reading this text in a modal!</CModalBody>
-                    <CModalFooter>
-                        <CButton color="secondary" onClick={() => setVisible(false)}>
-                            Close
-                        </CButton>
-                        <CButton color="primary">Save changes</CButton>
-                    </CModalFooter>
-                </CModal>
-            </>
-        )
+
     }
 
     const congressMen = props.congressList;
@@ -113,7 +97,6 @@ const AppContent = (props) => {
                     const values = (
                         <Fragment>
                             <CCol key={getIdMan}>
-                                <div>{LiveDemo}</div>
                                 <span id={getIdMan} key={getIdMan}
                                   className={`${'bg-color-' + getColorMan} ${classes.cat_circle}`}
                                   onMouseEnter={event => {onMouseEnterInfoMan(event, getIdParty)}}
@@ -157,7 +140,6 @@ const AppContent = (props) => {
                         <h1 className='text-lg-center'>Congreso de la República</h1>
                     </CRow>
                     {rows()}
-
                 </CContainer>
             </div>
         </Fragment>

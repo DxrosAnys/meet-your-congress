@@ -59,7 +59,7 @@ const DefaultLayout = () => {
 
     const showPartyInformation = (idMan, getIdParty) => {
         console.log(getIdParty);
-        setSelectedParty({getIdParty});
+        setSelectedParty(getIdParty);
     }
 
     return (

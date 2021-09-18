@@ -107,15 +107,15 @@ const AppSidebar = (props) => {
         );
     });
     return (
-            <CSidebar  position="fixed"
-                       visible={true}
+            <CSidebar position="fixed"
+                      visible={true}
                       selfHiding="md"
-                       unfoldable={unfoldable}
+                      unfoldable={unfoldable}
                       show={sidebarShow}
                       onShow={() => console.log('show')}
-                       onHide={() => {
+                      onHide={() => {
                            dispatch({ type: 'set', sidebarShow: false })
-                       }}
+                      }}
                       className={classes["main-sidebar"]}
                       >
                 <CSidebarBrand className="d-none d-md-flex" to="/">
