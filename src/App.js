@@ -16,8 +16,7 @@ function App() {
       <HashRouter>
           <Suspense fallback={loading}>
             <Switch>
-                <Route path="/" name="Home" exact >
-                    <DefaultLayout/>
+                <Route path="/" name="Home" render={(props) => <DefaultLayout {...props} />} >
                 </Route>
             </Switch>
           </Suspense>

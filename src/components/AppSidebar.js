@@ -86,13 +86,12 @@ const AppSidebar = (props) => {
 
     const unfoldable = useSelector((state) => state.sidebarUnfoldable);
     const sidebarShow =  useSelector((state) => state.sidebarShow);
+    const infoPartyShow =  useSelector((state) => state.infoPartyShow);
    // const navGroupVisible =  useSelector((state) => state.visible);
-
-    console.log(props.visibleParty.getIdParty);
 
     const parties = DUMMY_PARTIES.map(party => {
         return (
-            <CNavGroup key={party.id} toggler={party.party_name} visible={props.visibleParty.getIdParty === party.id ? visible : false} >
+            <CNavGroup key={party.id} toggler={party.party_name} visible={infoPartyShow === party.id && visible} >
                 <CNavItem key={party.id} id={party.id}>
                     <label>Presidente: {party.party_president}</label>
                     <label>Fundación: {party.foundation}</label>
