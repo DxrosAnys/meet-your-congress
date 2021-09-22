@@ -5,10 +5,11 @@ import {
     CContainer, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle,
     CRow, CSpinner
 } from "@coreui/react";
-import classes from "./AppContent.module.css";
+import classes from "./base/CongressContent.module.css";
 import MemberCard from "./base/utilities/MemberCard";
 import {Redirect, Route, Switch} from "react-router-dom";
 
+// routes config
 import routes from '../routes';
 
 /**
@@ -16,7 +17,7 @@ import routes from '../routes';
  * V0.0.1
  * @return MainPage - First page of this project.
  * **/
-const AppContent = (props) => {
+const AppContent = () => {
 
 // fluid='true'
     return (

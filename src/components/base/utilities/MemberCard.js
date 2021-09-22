@@ -1,7 +1,7 @@
 import {
     CButton,
     CCard,
-    CCardImage, CCardText,
+    CCardText,
     CCardTitle, CCol, CImage,
     CModal,
     CModalBody,
@@ -10,7 +10,7 @@ import {
     CModalTitle, CRow
 } from "@coreui/react";
 import React, {Fragment, useState} from "react";
-import classes from "../../AppContent.module.css";
+import classes from "../CongressContent.module.css";
 
 const MEMBER_CONGRESS = [{
     id: 'AP01MGAP',

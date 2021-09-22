@@ -1,4 +1,4 @@
-import classes from "../AppContent.module.css";
+import classes from "./CongressContent.module.css";
 import React, {Fragment, useState} from "react";
 import {CCol, CContainer, CRow, CSpinner} from "@coreui/react";
 import MemberCard from "./utilities/MemberCard";
@@ -67,7 +67,6 @@ const CongressContent = (props) => {
         if (getIdParty !== null && getIdParty !== undefined) {
             if (!idMember.match("^[a-zA-Z]*$") && !idMember.match("^[0-9]*$")) {
                 dispatch({ type: 'set', infoPartyShow: getIdParty });
-            //    props.showInfoParty(idMember, getIdParty);
 
             }
         }
@@ -167,7 +166,6 @@ const CongressContent = (props) => {
         return adds;
 
     };
-
 
     return (
         <Fragment>

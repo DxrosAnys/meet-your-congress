@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 
 const initialState = {
   sidebarShow: false,
-  infoPartyShow: false,
+  infoPartyShow: "",
 }
 
 const changeState = (state = initialState, { type, ...rest }) => {

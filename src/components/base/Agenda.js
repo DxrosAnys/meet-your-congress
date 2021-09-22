@@ -1,8 +1,13 @@
+import React, {Fragment} from "react";
+import {CContainer, CRow} from "@coreui/react";
 
 
+const Agenda = (props) => {
 
-const Agenda = () => {
-
+    return (
+        <Fragment>
+        </Fragment>
+    );
 };
 
 export default Agenda;
