@@ -1,6 +1,5 @@
 import './App.css';
 import './scss/style.scss';
-import './scss/_custom.scss';
 import {Suspense} from "react";
 import "@coreui/coreui/dist/css/coreui.min.css";
 import {HashRouter, Route, Switch} from "react-router-dom";
@@ -17,8 +16,7 @@ function App() {
       <HashRouter>
           <Suspense fallback={loading}>
             <Switch>
-                <Route path="/" name="Home" exact >
-                    <DefaultLayout/>
+                <Route path="/" name="Home" render={(props) => <DefaultLayout {...props} />} >
                 </Route>
             </Switch>
           </Suspense>

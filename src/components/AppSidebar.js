@@ -57,43 +57,64 @@ const DUMMY_PARTIES = [
         party_president: "Av. Brasil 170, Breña, Lima",
         foundation: "",
         campus: "Av. 9 de diciembre 218, Lima, Lima",
-        color: "rojete",
+        color: "red",
         number_congressman: 32,
         number_andean_parliament: 2,
         number_regional_governors: 6,
         number_provincial_mayors: 17,
         number_district_mayors: 74,
+    },
+    {
+        id: "5",
+        party_name: "Somos Peru",
+        party_president: "Av. Brasil 170, Breña, Lima",
+        foundation: "",
+        campus: "Av. 9 de diciembre 218, Lima, Lima",
+        color: "red",
+        number_congressman: 3,
+        number_andean_parliament: 4,
+        number_regional_governors: 6,
+        number_provincial_mayors: 6,
+        number_district_mayors: 4,
     }
 ];
 
-const AppSidebar = () => {
+const AppSidebar = (props) => {
+    const dispatch = useDispatch();
     const [visible, setVisible] = useState(true);
     const classesHeader = `sidebar-fixed ${classes["main-menu"]}`;
- //   const dispatch = useDispatch();
-    const unfoldable = true ; // useSelector((state) => state.sidebarUnfoldable);
-    const sidebarShow =  true; //useSelector((state) => state.sidebarShow);
+
+    const unfoldable = useSelector((state) => state.sidebarUnfoldable);
+    const sidebarShow =  useSelector((state) => state.sidebarShow);
+    const infoPartyShow =  useSelector((state) => state.infoPartyShow);
+   // const navGroupVisible =  useSelector((state) => state.visible);
 
     const parties = DUMMY_PARTIES.map(party => {
         return (
-            <CNavGroup toggler={party.party_name}>
-                <CNavItem id={party.id}>
+            <CNavGroup key={party.id} toggler={party.party_name} visible={infoPartyShow === party.id && visible} >
+                <CNavItem key={party.id} id={party.id}>
                     <label>Presidente: {party.party_president}</label>
-                    <label> Fundación: {party.foundation}</label>
-                    <label> Sede: {party.campus}</label>
+                    <label>Fundación: {party.foundation}</label>
+                    <label>Sede: {party.campus}</label>
                     <label>Congresistas: {party.number_congressman}</label>
-                    <label> Parlamento Andino: {party.number_andean_parliament}</label>
+                    <label>Parlamento Andino: {party.number_andean_parliament}</label>
                     <label>Gobernadores Regionales: {party.number_regional_governors}</label>
-                    <label> Alcaldías provinciales: {party.number_provincial_mayors}</label>
+                    <label>Alcaldías provinciales: {party.number_provincial_mayors}</label>
                     <label>Alcaldías distritales: {party.number_district_mayors}</label>
                 </CNavItem>
             </CNavGroup>
         );
     });
     return (
-            <CSidebar visible={true} position="fixed"
+            <CSidebar position="fixed"
+                      visible={true}
                       selfHiding="md"
-                      show={true}
+                      unfoldable={unfoldable}
+                      show={sidebarShow}
                       onShow={() => console.log('show')}
+                      onHide={() => {
+                           dispatch({ type: 'set', sidebarShow: false })
+                      }}
                       className={classes["main-sidebar"]}
                       >
                 <CSidebarBrand className="d-none d-md-flex" to="/">
@@ -112,7 +133,7 @@ const AppSidebar = () => {
                 </CSidebarNav>
                 <CSidebarToggler
                     className="d-none d-lg-flex"
-                    onClick={() => false }//dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}
+                    onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}
                 />
             </CSidebar>
     );
