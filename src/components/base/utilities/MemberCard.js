@@ -11,6 +11,7 @@ import {
 } from "@coreui/react";
 import React, {Fragment, useState} from "react";
 import classes from "../../AppContent.module.css";
+import ReactTooltip from "react-tooltip";
 
 const MEMBER_CONGRESS = [{
     id: 'AP01MGAP',
@@ -109,12 +110,37 @@ const MemberCard = (props) => {
 
     return (
         <Fragment>
-            <span id={props.id}
+            <span id={props.id} data-tip data-for={'tooltip'+props.id}
                   className={`${'bg-color-' + props.colorParty} ${classes.cat_circle}`}
                   onPointerEnter={() => props.onChooseMember(props.id, props.idParty)}
                   onClick={() => setVisible(!visible)}>
             <img src={props.srcImage} className={`rounded-circle`} alt=""/>
             </span>
+            <ReactTooltip id={'tooltip'+props.id} aria-haspopup='true' role='example' effect="solid" type="light">
+                <CModalHeader onDismiss={() => setVisible(false)}>
+                    <CModalTitle>Ficha de Congresista</CModalTitle>
+                </CModalHeader>
+                <CModalBody>
+                    <CCard>
+                        <CRow>
+
+                            <CCol>
+                                <CCardTitle>Datos Personales</CCardTitle>
+                                <CCardText>Nombres: {infoMember[0] !== undefined ? infoMember[0].name : 'Sin nombres'} </CCardText>
+                            </CCol>
+                            <CCol> <CImage src={props.srcImage} orientation={"overlay-padding"} /></CCol>
+                        </CRow>
+                        <CCardTitle>Datos Generales</CCardTitle>
+                        <CCardText>Periodo de Funciones: </CCardText>
+                        <CCardText>Inicio: {infoMember[0] !== undefined ? infoMember[0].period_functions_start : 'Sin nombres'}</CCardText>
+                        <CCardText>Fin: {infoMember[0] !== undefined ? infoMember[0].period_functions_finish : 'Sin nombres'}</CCardText>
+                        <CCardText>Grupo o Partido Político: {infoMember[0] !== undefined ? infoMember[0].political_party : 'Sin nombres'} </CCardText>
+                        <CCardText>Bancada: {infoMember[0] !== undefined ? infoMember[0].political_party.toString().toUpperCase() : 'Sin nombres'} </CCardText>
+                        <CCardText>Representa a: {infoMember[0] !== undefined ? infoMember[0].represented_to : 'Sin nombres'} </CCardText>
+                        <CCardText>Condición: {infoMember[0] !== undefined ? infoMember[0].condition : 'Sin nombres'} </CCardText>
+                    </CCard>
+                </CModalBody>
+            </ReactTooltip>
             <CModal visible={visible} onDismiss={() => setVisible(false)}>
                 <CModalHeader onDismiss={() => setVisible(false)}>
                     <CModalTitle>Ficha de Congresista</CModalTitle>
